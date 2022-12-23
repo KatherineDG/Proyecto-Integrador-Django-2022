@@ -1,0 +1,256 @@
+*{
+    background-color: #11141b;
+    color: white;
+    font-family: 'Ubuntu', sans-serif;
+  
+}
+
+
+.fa-solid {
+    color: yellow;
+    
+}
+.container {  display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 0.5fr 1fr 1fr 0.5fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "HEADER HEADER HEADER"
+      "NAV NAV NAV"
+      "body body aside"
+      "body body aside"
+      "footter footter footter";
+
+  }
+  a{
+    background-color: #caa983;
+    color: black;
+  }
+  
+  #form{
+    width: 0;
+    height: 0;
+  }
+
+  button{
+    margin-left: 20%; 
+    background-color: rgb(126, 43, 18); 
+    border: none
+  }
+  button:hover{
+    background-color: rgb(240, 215, 148);
+  }
+|/*
+  .form{
+    width: 100vw;
+    height: 100vw;
+    display: grid;
+    place-items: center;
+    justify-items: stretch;
+    background-color: #caa983;
+    color: black;
+    border: 3px;
+    border-style: double;
+    border-radius: 5px;
+    border-color: black;
+    margin-left :5px;
+    margin-right: 3px;
+    margin :5px;
+    padding: 3px;
+    text-align: left;  
+  }
+  */
+
+  a:hover{
+      font-size: 105%;
+  }
+
+  
+  .imgfiambres{
+    max-width: 100%;
+
+  }
+
+  .imgbaner{
+    max-width: 100%;
+    max-height: 200px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    animation-name: animacion;
+    animation-duration: 8s;
+  }
+  .imgproductos{
+    max-width: 140px;
+    background-color: #caa983;
+    border-radius: 5%;
+}
+
+  .fondo{
+    background-color: #caa983;
+  
+  }
+  .imghand{
+      background-color: #caa983;
+      color: white;
+      animation-name: hand;
+      animation-duration: 1s;
+      animation-iteration-count: infinite;
+}
+
+  @keyframes hand{
+    0%   {transform: translate( 0px,0px) }
+    25%  {transform: translate( 0px,2px) }
+    75%  {transform: translate( 0px,-2px) }
+    100% {transform: translate( 0px,0px) }
+  
+
+}
+
+
+  @keyframes animacion {
+    0%   {transform: translate( 0px,0px) }
+    25%  {transform: translate(-200px,0px) rotate(3deg) }
+    75%  {transform: translate( 200px,0px) rotate(-3deg)}
+    100% {transform: translate( 0px,0px) }
+  }
+  
+
+  .flex{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 10px;
+    padding: 3px;
+    background-color: #caa983;
+    border-radius:5px ;}
+    
+  
+  .flexproductos{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 10px;
+    padding: 3px;
+    background-color: #caa983;
+    border-radius:5px ;
+    justify-content: space-between;}
+    
+  .bnav{
+      background-color: #caa983;
+      color: black;
+      border: 1px;
+      border-style: solid;
+      border-radius: 5px;
+      border-color: black;
+      margin-left :5px;
+      padding: 3px;}
+      
+
+  
+    .divinsta{
+      background-color: #caa983;
+      margin-left: 10px;}
+      
+  
+      
+  
+  .lateral{text-align: center;}
+
+  .tlabel{
+    background-color: #caa983; 
+    color:black;}
+  
+
+  .HEADER { grid-area: HEADER; }
+  
+  .NAV { grid-area: NAV; }
+  
+  .body {grid-area: body;
+    border-width: 3px 0 0 0;
+    border-style: double;
+    border-color: #caa983;
+    text-align: center; }
+  
+  .aside { grid-area: aside;
+    border-width: 3px 0 0 3px;
+    border-style: double;
+    border-color: #caa983;
+    text-align: center;}
+
+        
+  .footter { grid-area: footter; }
+  
+  @media only screen and (max-width:400px) {
+    .container {  display: grid;
+        grid-template-columns: 1fr  ;
+        grid-template-rows: 1fr 1fr 5fr 1fr 1fr;
+        gap: 0px 0px;
+        grid-auto-flow: row;
+        grid-template-areas:
+          "HEADER  "
+          "NAV  "
+          "body "
+          "aside"
+          "footter ";}
+          .HEADER { grid-area: HEADER;}
+          .NAV { grid-area: NAV; }
+          .body { grid-area: body; }
+          .aside { grid-area: aside; border-width: 3px 0 0 0; }
+          .footter { grid-area: footter; }
+
+          .imgproductos{
+              max-width: 30px;
+
+          }
+          .form{
+            display: grid;
+          }
+         
+          .flex{
+         
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            margin: 10px;
+            padding: 3px;
+            background-color: #caa983;
+            border-radius:5px ;
+          }
+          .bnav{
+              margin:1px;
+          }
+  }
+  @media only screen and (max-width:600px) {
+    .container {  display: grid;
+        grid-template-columns: 1fr 1fr ;
+        grid-template-rows: 1fr 1fr 2fr 1fr 1fr;
+        gap: 0px 0px;
+        grid-auto-flow: row;
+        grid-template-areas:
+          "HEADER HEADER "
+          "NAV NAV "
+          "body body "
+          "aside aside"
+          "footter footter ";}
+
+          .aside{border-width: 3px 0 0 0; }
+          .imgproductos{
+            max-width: 90px;
+        }
+  
+       .form{
+         display: grid;
+       }
+  
+  @keyframes animacion {
+    0%   {transform: translate( 0px,0px) rotate(0deg)}
+    25%  {transform: translate(-100px,0px) rotate(15deg)}
+    75%  {transform: translate( 100px,0px) rotate(-15deg)}
+    100% {transform: translate( 0px,0px) rotate(0deg)}
+  }
+
+
+  }
+

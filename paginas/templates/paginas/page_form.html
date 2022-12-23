@@ -1,0 +1,57 @@
+<!--Se tuvo que crear este archivo porque django lo requiere para reconocerlo (me lo pidió luego de un error :c)-->
+{% extends 'paginas/base.html' %}
+{% load static %}
+{%block nav%}
+<div class="NAV">
+    <div class="flex">
+    <div class="bnav"><a href="/">Inicio</a></div>
+    <div class="bnav"><a href="/pproductos">Productos</a></div>
+    <div class="bnav">Contacto</div>
+    <div class="divinsta" ><a href="https://www.instagram.com/laboqueria.devoto/" target="_blank"><img class="fondo"src="{%static 'paginas/imagenes/instagram.png' %}" width="25px"></a> </div>
+    <div class="bnav"><a href="{% url 'proveedores' %}">Proveedores</a></div>
+
+    <!--links de staff-->
+    {% if request.user.is_staff %}
+    <div class="bnav"><a href="/admin/">Admin</a></div>
+    <div class="bnav"><a href="{% url 'mercaderia' %}">Mercaderia</a></div>
+    {%else%}
+    <div class="bnav"><a href="/admin/">Acceder Admin</a></div>
+    {% endif %}
+
+    <!--links a autenticacion-->
+    {% if not request.user.is_authenticated %}
+    <div class="bnav"><a class="nav-link" href="{% url 'login' %}"> Iniciar Sesión </a></div>
+    <div class="bnav"><a class="nav-link" href="{% url 'signup' %}"> Registro </a></div>
+    {% else %}
+    <div class="bnav"><a class="nav-link" href="{% url 'logout' %}"> Salir </a></div>
+    {% endif %}
+</div>
+{%endblock nav%}
+{%block contenido%}
+<div class="body">
+    <p style="background-color: #caa983; color: black;"> Para comunicarse con nosotros complete el siguiente formulario. <img class="imghand" src="{%static 'paginas/imagenes/hand-pointer.jpg' %}" width="20px"></p> 
+    <div style="text-align: left; margin-left:30%; margin-top: 5%;">
+        <form action="" method="POST" name="form">
+            {% csrf_token %}
+            {{form.as_p}} <!--ahora django reconoce el formulario si lo llamamos como 'form'-->
+
+            <!--Esto pasarlo al archivo css-->
+            <style type="text/css" media="all">
+            button{
+                margin-left: 30%; 
+                margin-bottom: 2%;
+                background-color: rgb(126, 43, 18); 
+                border: none;
+                padding: 5px;
+                border-radius: 5px;
+            }
+            button:hover{
+                background-color: rgb(0, 0, 0);
+                transition: 0.3s;
+            }
+            </style>
+            <button type="submit" value="Enviar">Enviar</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

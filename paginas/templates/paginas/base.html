@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'paginas/css/estiloboqueria.css' %}"> 
+    <link rel="icon" href="{% static 'paginas/imagenes/faviconqueso.ico' %}">
+    <script src="https://kit.fontawesome.com/881b9b0207.js" crossorigin="anonymous"></script>
+
+
+    <title>{% block titulo %} La Boqueria {% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    
+    <div class="container">
+        <div class="HEADER">
+        <div><img class="imgbaner" src="{% static 'paginas/imagenes/bannerboqueria.jpeg' %}"  width= %100 height= 150px> 
+        </div> 
+    
+
+    {% block nav %}
+        <div class="NAV">
+            <div class="flex">
+            <div class="bnav">Inicio</div>
+            <div class="bnav"><a href="/pproductos">Productos </a></div>
+            <div class="bnav"><a href="{% url 'pcontacto' %}">Contacto</a></div>
+            <div class="divinsta"><a href="https://www.instagram.com/laboqueria.devoto/" target="_blank"><img class="fondo"src="{% static 'paginas/imagenes/instagram.png' %}" width="25px"></a> </div>
+            <div class="bnav"><a href="{% url 'proveedores' %}">Proveedores</a></div>
+            
+            <!--links de staff-->
+            {% if request.user.is_staff %}
+            <div class="bnav"><a href="/admin/">Admin</a></div>
+            <div class="bnav"><a href="{% url 'mercaderia' %}">Mercaderia</a></div>
+            {%else%}
+            <div class="bnav"><a href="/admin/">Acceder Admin</a></div>
+            {% endif %}
+
+            <!--links a autenticacion-->
+            {% if not request.user.is_authenticated %}
+            <div class="bnav"><a class="nav-link" href="{% url 'login' %}"> Iniciar Sesión </a></div>
+            <div class="bnav"><a class="nav-link" href="{% url 'signup' %}"> Registro </a></div>
+            {% else %}
+            <div class="bnav"><a class="nav-link" href="{% url 'logout' %}"> Salir </a></div>
+            {% endif %}
+        </div> 
+    {% endblock nav %}
+    </div>
+
+    {%block contenido %}
+    <div class="body"><p><i> En el corazon del barrio porteño de     Villa Devoto podran visitar nuestro local.
+            Recibiran una atencion personalizada con el fin de resolver sus necesidades y nuestro esmero por que su visita no solo sea una compra mas, si no un momento agradable en el cual puedan descubrir y conocer nuevas experiencias gastronomicas. </i></p> 
+            <img class= "imgfiambres" src="{% static 'paginas/imagenes/fiambres.jpeg' %}">
+    </div>     
+    {%endblock contenido%}
+
+    {% block aside %}
+    <div class="aside">
+            <div class="lateral">
+                <h5>Nos pueden encontrar en el barrio de Villa Devoto. Av. Lincoln 4513 (CABA)  <i class="fa-solid fa-cheese"></i></h5>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d52547.57504549808!2d-58.518662!3d-34.598511!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x929d32b74e73bce8!2sLA%20BOQUER%C3%8DA!5e0!3m2!1ses-419!2sar!4v1653275977216!5m2!1ses-419!2sar" width="200" height="150" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+    </div>
+    {%endblock aside %}
+
+    {%block footer %}
+    <div class="footter">
+        <div class="bnav">Horario de atencion: lunes a sabados de 09hs a 14hs y 17hs a 20hs. domingos 10hs a 13:30hs.</div></div>
+    </div>
+    {%endblock footer %}
+    </div> <!--cierra el contenedor aca-->
+</body>
+</html>

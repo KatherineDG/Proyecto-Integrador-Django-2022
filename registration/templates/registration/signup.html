@@ -1,0 +1,38 @@
+{% extends 'paginas/base.html' %}
+{% load static %}
+
+{%block nav%}
+<div class="NAV">
+    <div class="flex">
+    <div class="bnav"><a href="/">Inicio</a></div>
+    <div class="bnav"><a href="/pproductos">Productos</a></div>
+    <div class="bnav"><a href="{% url 'pcontacto' %}">Contacto</a></div>
+    <div class="divinsta" ><a href="https://www.instagram.com/laboqueria.devoto/" target="_blank"><img class="fondo"src="{%static 'paginas/imagenes/instagram.png' %}" width="25px"></a> </div>
+    <div class="bnav"><a href="{% url 'proveedores' %}">Proveedores</a></div>
+
+    <!--links de staff-->
+    {% if request.user.is_staff %}
+    <div class="bnav"><a href="/admin/">Admin</a></div>
+    <div class="bnav"><a href="{% url 'mercaderia' %}">Mercaderia</a></div>
+    {%else%}
+    <div class="bnav"><a href="/admin/">Acceder Admin</a></div>
+    {% endif %}
+
+    <!--links a autenticacion-->
+    {% if not request.user.is_authenticated %}
+    <div class="bnav"><a class="nav-link" href="{% url 'login' %}"> Iniciar Sesión </a></div>
+    <div class="bnav">Registro</div>
+    {% else %}
+    <div class="bnav"><a class="nav-link" href="{% url 'logout' %}"> Salir </a></div>
+    {% endif %}
+</div>
+{%endblock nav%}
+
+{% block contenido %}
+<style>.errorlist{color:red;} label{display: none;} </style>
+<form style="margin-left: 20%;" method="post">{% csrf_token %}
+  <h3 style="margin-left: 20%;" >Registro</h3>
+  {{form.as_p}}
+  <p style="margin-left: 20%;"><input type="submit" value="Acceder"></p>
+</form>
+{% endblock contenido %}

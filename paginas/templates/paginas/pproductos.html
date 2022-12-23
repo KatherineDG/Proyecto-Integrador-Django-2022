@@ -1,0 +1,64 @@
+{% extends 'paginas/base.html' %}
+{% load static %}
+{%block nav%}
+<div class="NAV"> 
+    <div class="flex">
+    <div class="bnav"><a href="/">Inicio</a></div>
+    <div class="bnav">Productos</div>
+    <div class="bnav"><a href="{% url 'pcontacto' %}">Contacto</a></div>
+    <div class="divinsta" ><a href="https://www.instagram.com/laboqueria.devoto/"target="_blank"><img class="fondo"src="{% static 'paginas/imagenes/instagram.png' %}" width="25px"></a></div>
+    <div class="bnav"><a href="{% url 'proveedores' %}">Proveedores</a></div>
+    
+    <!--links de staff-->
+    {% if request.user.is_staff %}
+    <div class="bnav"><a href="/admin/">Admin</a></div>
+    <div class="bnav"><a href="{% url 'mercaderia' %}">Mercaderia</a></div>
+    {%else%}
+    <div class="bnav"><a href="/admin/">Acceder Admin</a></div>
+    {% endif %}
+
+    <!--links a autenticacion-->
+    {% if not request.user.is_authenticated %}
+    <div class="bnav"><a class="nav-link" href="{% url 'login' %}"> Iniciar Sesión </a></div>
+    <div class="bnav"><a class="nav-link" href="{% url 'signup' %}"> Registro </a></div>
+    {% else %}
+    <div class="bnav"><a class="nav-link" href="{% url 'logout' %}"> Salir </a></div>
+    {% endif %}
+</div>
+{%endblock nav%}
+{%block contenido %}
+<div class="body"> 
+    <p>En nuestro local podran encontrar distintas variedades de quesos fiambres y embutidos de primera calidad.</p>
+    <h3>Fiambres</h3>
+    <h4>Bocatti</h4>
+    <div class="flexproductos">
+    <div class="fondo"><img class="imgproductos" src="{% static 'paginas/imagenes/bocatti.jpg' %}" ></div>
+    <div class="fondo"><img class="imgproductos" src="{% static 'paginas/imagenes/jamon natural.jpg' %}" width="150px"></div>
+    <div class="fondo"><img class="imgproductos" src="{% static 'paginas/imagenes/lomo.jpg' %}" width="150px"></div>
+    <div class="fondo"><img class="imgproductos" src="{% static 'paginas/imagenes/mortadella.jpg' %}" width="150px"></div>
+    <div class="fondo"><img class="imgproductos" src="{% static 'paginas/imagenes/fuet.jpg' %}" width="150px"></div>
+    <div class="fondo"><img class="imgproductos" src="{% static 'paginas/imagenes/salamin.jpg' %}" width="150px"></div>
+    </div>
+
+    <h4>Los calvos 42</h4>
+    <div class="flexproductos">
+    <div class="fondo"><img class="imgproductos" src="{% static 'paginas/imagenes/logo 42.jpeg' %}" ></div>
+    <div class="fondo"><img class="imgproductos" src="{% static 'paginas/imagenes/jamon natural 42.jpeg' %}" ></div>
+    <div class="fondo"><img class="imgproductos" src="{% static 'paginas/imagenes/panceta 42.jpeg' %}" ></div>
+    <div class="fondo"><img class="imgproductos" src="{% static 'paginas/imagenes/bondiola 42.jpeg' %}" ></div>
+    <div class="fondo"><img class="imgproductos" src="{% static 'paginas/imagenes/salame 42.jpeg' %}" ></div>
+    <div class="fondo"><img class="imgproductos" src="{% static 'paginas/imagenes/crudo 42.jpeg' %}" ></div>
+    </div> 
+
+    <h3>Quesos</h3>
+    <div class="flexproductos">
+    <div class="fondo"><img class="imgproductos" src="{% static 'paginas/imagenes/pategras.jpg' %}" ></div>
+    <div class="fondo"><img class="imgproductos" src="{% static 'paginas/imagenes/fontina.jpg' %}" ></div>
+    <div class="fondo"><img class="imgproductos" src="{% static 'paginas/imagenes/gruyere.jpg' %}" ></div>
+    <div class="fondo"><img class="imgproductos" src="{% static 'paginas/imagenes/roquefort.jpg' %}" ></div>
+    <div class="fondo"><img class="imgproductos" src="{% static 'paginas/imagenes/pesto.png' %}" ></div>
+    <div class="fondo"><img class="imgproductos" src="{% static 'paginas/imagenes/parmesano.jpg' %}" ></div>
+    </div> 
+
+</div>
+{% endblock contenido %}

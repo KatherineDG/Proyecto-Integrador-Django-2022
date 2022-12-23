@@ -1,0 +1,44 @@
+{% extends 'paginas/base.html' %}
+{% load static %}
+
+{%block nav%}
+<div class="NAV">
+    <div class="flex">
+    <div class="bnav"><a href="/">Inicio</a></div>
+    <div class="bnav"><a href="/pproductos">Productos</a></div>
+    <div class="bnav"><a href="{% url 'pcontacto' %}">Contacto</a></div>
+    <div class="divinsta" ><a href="https://www.instagram.com/laboqueria.devoto/" target="_blank"><img class="fondo"src="{%static 'paginas/imagenes/instagram.png' %}" width="25px"></a> </div>
+    <div class="bnav"><a href="{% url 'proveedores' %}">Proveedores</a></div>
+    
+     <!--links de staff-->
+    {% if request.user.is_staff %}
+    <div class="bnav"><a href="/admin/">Admin</a></div>
+    <div class="bnav">Mercaderia</div>
+    {%else%}
+    <div class="bnav"><a href="/admin/">Acceder Admin</a></div>
+    {% endif %}
+
+    <!--links a autenticacion-->
+    {% if not request.user.is_authenticated %}
+    <div class="bnav"><a class="nav-link" href="{% url 'login' %}"> Iniciar Sesión </a></div>
+    <div class="bnav"><a class="nav-link" href="{% url 'signup' %}"> Registro </a></div>
+    {% else %}
+    <div class="bnav"><a class="nav-link" href="{% url 'logout' %}"> Salir </a></div>
+    {% endif %}
+</div>
+{%endblock nav%}
+
+{% block contenido %}
+    
+    {% for page in productos_list|dictsort:"id" %}
+    <div>
+        <h3 style="margin-left: 45%;">Articulo: {{page.articulo}}</h3>
+        <p style="margin-left: 40%;">Marca: {{page.marca}}</p> 
+        <p style="margin-left: 40%;">Precio: {{page.precio}}</p>
+        <p style="margin-left: 40%;">Proveedor: {{page.proveedor_id}}</p>
+        
+    </div>
+    <br>
+    {% endfor %}
+
+{% endblock contenido %}
